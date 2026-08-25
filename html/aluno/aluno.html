@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>FitLink - Aluno</title>
+
+    <link
+        rel="stylesheet"
+        href="../../css/aluno.css"
+    >
+
+</head>
+
+<body>
+
+
+    <!-- ==========================================
+         HEADER
+    =========================================== -->
+
+    <header class="header">
+
+        <div class="logo-area">
+
+            <img
+                src="../../img/logo.png"
+                alt="Logo FitLink"
+                class="logo"
+            >
+
+            <span class="logo-nome">
+                FitLink
+            </span>
+
+        </div>
+
+
+        <nav class="menu">
+
+            <a
+                href="aluno.html"
+                class="ativo"
+            >
+                Início
+            </a>
+
+            <a href="#">
+                Meus Treinos
+            </a>
+
+            <a href="#">
+                Agenda
+            </a>
+
+            <a href="#">
+                Mensagens
+            </a>
+
+            <a href="#">
+                Perfil
+            </a>
+
+        </nav>
+
+
+        <button
+            class="btn-sair"
+            onclick="sair()"
+        >
+            Sair
+        </button>
+
+    </header>
+
+
+
+    <!-- ==========================================
+         CONTEÚDO
+    =========================================== -->
+
+    <main>
+
+
+        <!-- BOAS VINDAS -->
+
+        <section class="boas-vindas">
+
+            <h1>
+                Encontre seu Personal Trainer
+            </h1>
+
+            <p>
+                Escolha o profissional ideal para
+                alcançar seus objetivos.
+            </p>
+
+        </section>
+
+
+
+        <!-- ======================================
+             PESQUISA
+        ======================================= -->
+
+        <section class="pesquisa">
+
+            <div class="barra-pesquisa">
+
+                <span class="icone-pesquisa">
+                    🔎
+                </span>
+
+                <input
+                    type="text"
+                    id="campoPesquisa"
+                    placeholder="Buscar por profissional ou academia..."
+                    autocomplete="off"
+                >
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             TÍTULO
+        ======================================= -->
+
+        <section class="titulo-personais">
+
+            <div>
+
+                <h2>
+                    Personal Trainers
+                </h2>
+
+                <p>
+                    Profissionais disponíveis
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ======================================
+             CARDS
+        ======================================= -->
+
+        <section
+            id="listaPersonais"
+            class="lista-personais"
+        >
+
+            <div class="carregando">
+
+                <div class="spinner"></div>
+
+                <p>
+                    Carregando profissionais...
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- ==========================================
+         JAVASCRIPT
+    =========================================== -->
+
+    <script
+        src="../../js/aluno.js"
+    ></script>
+
+
+</body>
+
+</html>

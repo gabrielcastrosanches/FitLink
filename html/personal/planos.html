@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Meus Planos - FitLink</title>
+
+    <link
+        rel="stylesheet"
+        href="../../css/planos.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- MENU -->
+
+    <aside class="sidebar">
+
+
+        <div class="logo-area">
+
+            <img
+                src="../../img/logo.png"
+                alt="FitLink"
+            >
+
+        </div>
+
+
+        <nav>
+
+
+            <a href="personal.html">
+
+                <span>⌂</span>
+
+                Início
+
+            </a>
+
+
+            <a href="meusAlunos.html">
+
+                <span>💬</span>
+
+                Mensagens
+
+            </a>
+
+
+            <a
+                href="planos.html"
+                class="ativo"
+            >
+
+                <span>📋</span>
+
+                Planos
+
+            </a>
+
+
+            <a href="agenda.html">
+
+                <span>📅</span>
+
+                Agenda
+
+            </a>
+
+
+            <a href="#">
+
+                <span>👤</span>
+
+                Perfil
+
+            </a>
+
+
+        </nav>
+
+
+        <button
+            class="btn-sair"
+            onclick="sair()"
+        >
+
+            Sair
+
+        </button>
+
+
+    </aside>
+
+
+
+    <!-- CONTEÚDO -->
+
+    <main class="conteudo">
+
+
+        <section class="topo">
+
+
+            <div>
+
+                <h1>
+                    Meus Planos
+                </h1>
+
+
+                <p>
+                    Crie e gerencie os planos oferecidos aos seus alunos.
+                </p>
+
+            </div>
+
+
+            <button
+                class="btn-novo"
+                onclick="abrirCriarPlano()"
+            >
+
+                + Criar plano
+
+            </button>
+
+
+        </section>
+
+
+
+        <section
+            id="listaPlanos"
+            class="lista-planos"
+        >
+
+            <div class="carregando">
+
+                Carregando seus planos...
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- MODAL -->
+
+    <div
+        id="modalPlano"
+        class="modal"
+    >
+
+
+        <div class="modal-conteudo">
+
+
+            <div class="modal-header">
+
+
+                <div>
+
+                    <h2 id="tituloModal">
+                        Criar novo plano
+                    </h2>
+
+
+                    <p>
+                        Preencha as informações do plano.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn-fechar"
+                    onclick="fecharModal()"
+                >
+
+                    ×
+
+                </button>
+
+
+            </div>
+
+
+
+            <form id="formPlano">
+
+
+                <input
+                    type="hidden"
+                    id="id_plano"
+                    name="id_plano"
+                >
+
+
+                <!-- NOME -->
+
+                <div class="campo">
+
+                    <label for="titulo">
+
+                        Nome do plano
+
+                    </label>
+
+
+                    <input
+                        type="text"
+                        id="titulo"
+                        name="titulo"
+                        placeholder="Ex: Plano Premium"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- BENEFÍCIOS -->
+
+                <div class="campo">
+
+                    <label for="beneficios">
+
+                        Benefícios
+
+                    </label>
+
+
+                    <textarea
+                        id="beneficios"
+                        name="beneficios"
+                        rows="6"
+                        placeholder="Descreva os benefícios do plano..."
+                        required
+                    ></textarea>
+
+
+                </div>
+
+
+
+                <!-- VALOR -->
+
+                <div class="campo">
+
+                    <label for="valor">
+
+                        Valor
+
+                    </label>
+
+
+                    <div class="campo-valor">
+
+                        <span>
+                            R$
+                        </span>
+
+
+                        <input
+                            type="number"
+                            id="valor"
+                            name="valor"
+                            step="0.01"
+                            min="0"
+                            placeholder="0,00"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- VALIDADE -->
+
+                <div class="campo">
+
+                    <label for="validade">
+
+                        Validade do plano
+
+                    </label>
+
+
+                    <select
+                        id="validade"
+                        name="validade"
+                        required
+                    >
+
+                        <option value="">
+                            Selecione a duração
+                        </option>
+
+
+                        <option value="1">
+                            1 mês
+                        </option>
+
+
+                        <option value="2">
+                            2 meses
+                        </option>
+
+
+                        <option value="3">
+                            3 meses
+                        </option>
+
+
+                        <option value="4">
+                            4 meses
+                        </option>
+
+
+                        <option value="6">
+                            6 meses
+                        </option>
+
+
+                        <option value="12">
+                            12 meses
+                        </option>
+
+
+                    </select>
+
+                </div>
+
+
+
+                <!-- BOTÕES -->
+
+                <div class="acoes-form">
+
+
+                    <button
+                        type="button"
+                        class="btn-cancelar"
+                        onclick="fecharModal()"
+                    >
+
+                        Cancelar
+
+                    </button>
+
+
+                    <button
+                        type="submit"
+                        class="btn-salvar"
+                    >
+
+                        Salvar plano
+
+                    </button>
+
+
+                </div>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+
+        // ==========================================
+        // CARREGAR PLANOS
+        // ==========================================
+
+        function carregarPlanos() {
+
+
+            const lista =
+                document.getElementById(
+                    "listaPlanos"
+                );
+
+
+            lista.innerHTML = `
+
+                <div class="carregando">
+
+                    Carregando seus planos...
+
+                </div>
+
+            `;
+
+
+            fetch(
+                "../../php/planos.php?acao=listar"
+            )
+
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Erro HTTP: "
+                        + response.status
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+
+            .then(planos => {
+
+
+                if (planos.erro) {
+
+                    throw new Error(
+                        planos.erro
+                    );
+
+                }
+
+
+                mostrarPlanos(planos);
+
+            })
+
+
+            .catch(error => {
+
+
+                console.error(error);
+
+
+                lista.innerHTML = `
+
+                    <div class="erro">
+
+                        <strong>
+                            Erro ao carregar os planos.
+                        </strong>
+
+                        <p>
+                            ${error.message}
+                        </p>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+
+        // ==========================================
+        // MOSTRAR PLANOS
+        // ==========================================
+
+        function mostrarPlanos(planos) {
+
+
+            const lista =
+                document.getElementById(
+                    "listaPlanos"
+                );
+
+
+            lista.innerHTML = "";
+
+
+            if (planos.length === 0) {
+
+
+                lista.innerHTML = `
+
+                    <div class="sem-planos">
+
+                        <div class="icone-vazio">
+                            📋
+                        </div>
+
+
+                        <h2>
+                            Você ainda não possui planos
+                        </h2>
+
+
+                        <p>
+                            Crie seu primeiro plano para começar.
+                        </p>
+
+
+                        <button
+                            onclick="abrirCriarPlano()"
+                            class="btn-vazio"
+                        >
+
+                            + Criar primeiro plano
+
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+
+            planos.forEach(plano => {
+
+
+                const card =
+                    document.createElement(
+                        "article"
+                    );
+
+
+                card.className =
+                    "card-plano";
+
+
+                const valor =
+                    Number(
+                        plano.valor
+                    ).toLocaleString(
+                        "pt-BR",
+                        {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2
+                        }
+                    );
+
+
+                let validade;
+
+
+                if (
+                    Number(plano.validade) === 1
+                ) {
+
+                    validade =
+                        "1 mês";
+
+                } else {
+
+                    validade =
+                        plano.validade
+                        + " meses";
+
+                }
+
+
+                card.innerHTML = `
+
+                    <div class="card-topo">
+
+                        <div class="icone-plano">
+                            📋
+                        </div>
+
+
+                        <div class="menu-plano">
+
+                            <button
+                                onclick="editarPlano(${plano.id_plano})"
+                            >
+                                ✏️
+                            </button>
+
+
+                            <button
+                                onclick="excluirPlano(${plano.id_plano})"
+                            >
+                                🗑️
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <h2>
+                        ${escaparHTML(plano.titulo)}
+                    </h2>
+
+
+                    <div class="preco">
+
+                        <span>
+                            R$
+                        </span>
+
+                        <strong>
+                            ${valor}
+                        </strong>
+
+                        <small>
+                            /mês
+                        </small>
+
+                    </div>
+
+
+                    <div class="linha"></div>
+
+
+                    <div class="beneficios">
+
+                        <h3>
+                            Benefícios
+                        </h3>
+
+
+                        <p>
+                            ${escaparHTML(
+                                plano.beneficios
+                            )}
+                        </p>
+
+                    </div>
+
+
+                    <div class="validade">
+
+                        <span>
+                            Duração
+                        </span>
+
+
+                        <strong>
+                            ${validade}
+                        </strong>
+
+                    </div>
+
+                `;
+
+
+                lista.appendChild(card);
+
+            });
+
+        }
+
+
+
+        // ==========================================
+        // CRIAR
+        // ==========================================
+
+        function abrirCriarPlano() {
+
+
+            document
+                .getElementById("formPlano")
+                .reset();
+
+
+            document
+                .getElementById("id_plano")
+                .value = "";
+
+
+            document
+                .getElementById("tituloModal")
+                .textContent =
+                "Criar novo plano";
+
+
+            document
+                .getElementById("modalPlano")
+                .classList.add("mostrar");
+
+        }
+
+
+
+        // ==========================================
+        // FECHAR
+        // ==========================================
+
+        function fecharModal() {
+
+            document
+                .getElementById("modalPlano")
+                .classList.remove("mostrar");
+
+        }
+
+
+
+        // ==========================================
+        // EDITAR
+        // ==========================================
+
+        function editarPlano(id) {
+
+
+            fetch(
+                `../../php/planos.php?acao=buscar&id_plano=${id}`
+            )
+
+
+            .then(response =>
+                response.json()
+            )
+
+
+            .then(plano => {
+
+
+                if (plano.erro) {
+
+                    alert(plano.erro);
+
+                    return;
+
+                }
+
+
+                document
+                    .getElementById("id_plano")
+                    .value =
+                    plano.id_plano;
+
+
+                document
+                    .getElementById("titulo")
+                    .value =
+                    plano.titulo;
+
+
+                document
+                    .getElementById("beneficios")
+                    .value =
+                    plano.beneficios;
+
+
+                document
+                    .getElementById("valor")
+                    .value =
+                    plano.valor;
+
+
+                document
+                    .getElementById("validade")
+                    .value =
+                    plano.validade;
+
+
+                document
+                    .getElementById("tituloModal")
+                    .textContent =
+                    "Editar plano";
+
+
+                document
+                    .getElementById("modalPlano")
+                    .classList.add("mostrar");
+
+            })
+
+
+            .catch(error => {
+
+                console.error(error);
+
+                alert(
+                    "Erro ao buscar o plano."
+                );
+
+            });
+
+        }
+
+
+
+        // ==========================================
+        // SALVAR
+        // ==========================================
+
+        document
+            .getElementById("formPlano")
+            .addEventListener(
+                "submit",
+                function(event) {
+
+
+                    event.preventDefault();
+
+
+                    const dados =
+                        new FormData(this);
+
+
+                    dados.append(
+                        "acao",
+                        "salvar"
+                    );
+
+
+                    const botao =
+                        document.querySelector(
+                            ".btn-salvar"
+                        );
+
+
+                    botao.disabled = true;
+
+                    botao.textContent =
+                        "Salvando...";
+
+
+                    fetch(
+                        "../../php/planos.php",
+                        {
+                            method: "POST",
+                            body: dados
+                        }
+                    )
+
+
+                    .then(response =>
+                        response.json()
+                    )
+
+
+                    .then(resultado => {
+
+
+                        if (
+                            resultado.sucesso
+                        ) {
+
+
+                            alert(
+                                resultado.mensagem
+                            );
+
+
+                            fecharModal();
+
+
+                            carregarPlanos();
+
+
+                        } else {
+
+
+                            alert(
+                                resultado.erro
+                                ||
+                                "Erro ao salvar."
+                            );
+
+                        }
+
+                    })
+
+
+                    .catch(error => {
+
+
+                        console.error(error);
+
+
+                        alert(
+                            "Erro ao conectar com o servidor."
+                        );
+
+                    })
+
+
+                    .finally(() => {
+
+
+                        botao.disabled =
+                            false;
+
+
+                        botao.textContent =
+                            "Salvar plano";
+
+                    });
+
+                }
+            );
+
+
+
+        // ==========================================
+        // EXCLUIR
+        // ==========================================
+
+        function excluirPlano(id) {
+
+
+            if (
+                !confirm(
+                    "Tem certeza que deseja excluir este plano?"
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            const dados =
+                new FormData();
+
+
+            dados.append(
+                "acao",
+                "excluir"
+            );
+
+
+            dados.append(
+                "id_plano",
+                id
+            );
+
+
+            fetch(
+                "../../php/planos.php",
+                {
+                    method: "POST",
+                    body: dados
+                }
+            )
+
+
+            .then(response =>
+                response.json()
+            )
+
+
+            .then(resultado => {
+
+
+                if (
+                    resultado.sucesso
+                ) {
+
+
+                    alert(
+                        resultado.mensagem
+                    );
+
+
+                    carregarPlanos();
+
+
+                } else {
+
+
+                    alert(
+                        resultado.erro
+                    );
+
+                }
+
+            })
+
+
+            .catch(error => {
+
+
+                console.error(error);
+
+
+                alert(
+                    "Erro ao excluir o plano."
+                );
+
+            });
+
+        }
+
+
+
+        // ==========================================
+        // ESCAPAR HTML
+        // ==========================================
+
+        function escaparHTML(texto) {
+
+
+            return String(texto ?? "")
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+
+        // ==========================================
+        // SAIR
+        // ==========================================
+
+        function sair() {
+
+            window.location.href =
+                "../login.html";
+
+        }
+
+
+
+        // ==========================================
+        // INICIAR
+        // ==========================================
+
+        carregarPlanos();
+
+    </script>
+
+
+</body>
+
+</html>

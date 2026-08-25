@@ -1,0 +1,13 @@
+.logo-login {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-login img {
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}

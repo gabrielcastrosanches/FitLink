@@ -1,0 +1,665 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f5f7fa;
+
+    color: #222;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    width: 100%;
+
+    height: 75px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 40px;
+
+    box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.08);
+
+}
+
+
+.logo-area {
+
+    width: 180px;
+
+}
+
+
+.logo {
+
+    width: 100px;
+
+    height: auto;
+
+}
+
+
+nav {
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 30px;
+
+}
+
+
+nav a {
+
+    text-decoration: none;
+
+    color: #444;
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+}
+
+
+nav a:hover {
+
+    color: #1f8f4d;
+
+}
+
+
+nav a.ativo {
+
+    color: #1f8f4d;
+
+}
+
+
+.btn-sair {
+
+    border: none;
+
+    background: #e74c3c;
+
+    color: white;
+
+    padding: 10px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+}
+
+
+.btn-sair:hover {
+
+    background: #c0392b;
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+
+    padding: 40px 20px 60px;
+
+}
+
+
+.perfil-container {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: auto;
+
+}
+
+
+.titulo {
+
+    margin-bottom: 30px;
+
+}
+
+
+.titulo h1 {
+
+    font-size: 32px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.titulo p {
+
+    color: #777;
+
+}
+
+
+/* =========================
+   CARDS
+========================= */
+
+.card {
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 30px;
+
+    margin-bottom: 25px;
+
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.07);
+
+}
+
+
+.card h2 {
+
+    font-size: 21px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.descricao {
+
+    color: #777;
+
+    margin-bottom: 20px;
+
+}
+
+
+/* =========================
+   FORMULÁRIO
+========================= */
+
+.campo {
+
+    display: flex;
+
+    flex-direction: column;
+
+    margin-bottom: 20px;
+
+}
+
+
+.campo label {
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+}
+
+
+.campo input {
+
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+}
+
+
+.campo input:focus {
+
+    border-color: #1f8f4d;
+
+}
+
+
+.campo input[readonly] {
+
+    background: #f1f1f1;
+
+    color: #777;
+
+}
+
+
+.campo small {
+
+    color: #888;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+
+}
+
+
+.linha {
+
+    display: flex;
+
+    gap: 20px;
+
+}
+
+
+.linha .campo {
+
+    flex: 1;
+
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.btn-salvar {
+
+    border: none;
+
+    background: #1f8f4d;
+
+    color: white;
+
+    padding: 13px 22px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.btn-salvar:hover {
+
+    background: #16713b;
+
+}
+
+
+.btn-localizacao {
+
+    border: none;
+
+    background: #1f8f4d;
+
+    color: white;
+
+    padding: 13px 20px;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+}
+
+
+.btn-localizacao:hover {
+
+    background: #16713b;
+
+}
+
+
+.btn-localizacao:disabled {
+
+    opacity: 0.6;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+.status-localizacao {
+
+    margin-top: 15px;
+
+    margin-bottom: 15px;
+
+    color: #666;
+
+    font-size: 14px;
+
+}
+
+
+/* =========================
+   LISTA DE ACADEMIAS
+========================= */
+
+.lista-academias {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+
+    margin-top: 20px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.academia-item {
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    padding: 18px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    background: white;
+
+}
+
+
+.academia-item:hover {
+
+    border-color: #1f8f4d;
+
+    background: #f8fff9;
+
+}
+
+
+.academia-item.selecionada {
+
+    border-color: #1f8f4d;
+
+    background: #f0fff5;
+
+}
+
+
+.academia-topo {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+}
+
+
+.academia-topo input {
+
+    width: 18px;
+
+    height: 18px;
+
+    margin-top: 2px;
+
+    accent-color: #1f8f4d;
+
+}
+
+
+.academia-info {
+
+    flex: 1;
+
+}
+
+
+.academia-nome {
+
+    font-weight: bold;
+
+    font-size: 16px;
+
+    display: block;
+
+    margin-bottom: 6px;
+
+}
+
+
+.academia-endereco {
+
+    color: #777;
+
+    font-size: 13px;
+
+    line-height: 1.4;
+
+}
+
+
+.distancia {
+
+    display: inline-block;
+
+    margin-top: 10px;
+
+    font-size: 12px;
+
+    color: #1f8f4d;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   MENSAGEM
+========================= */
+
+.mensagem {
+
+    width: 100%;
+
+    padding: 30px;
+
+    text-align: center;
+
+    color: #777;
+
+    border: 1px dashed #ccc;
+
+    border-radius: 10px;
+
+}
+
+
+.mensagem span {
+
+    display: block;
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 750px) {
+
+    header {
+
+        padding: 0 20px;
+
+    }
+
+
+    .logo-area {
+
+        width: 120px;
+
+    }
+
+
+    .logo {
+
+        width: 85px;
+
+    }
+
+
+    nav {
+
+        gap: 12px;
+
+    }
+
+
+    nav a {
+
+        font-size: 12px;
+
+    }
+
+
+    .btn-sair {
+
+        padding: 8px 12px;
+
+        font-size: 12px;
+
+    }
+
+
+    .linha {
+
+        flex-direction: column;
+
+        gap: 0;
+
+    }
+
+
+    .lista-academias {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    header {
+
+        min-height: 70px;
+
+        height: auto;
+
+        padding: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .logo-area {
+
+        width: 100%;
+
+    }
+
+
+    nav {
+
+        width: 100%;
+
+        order: 3;
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+
+    }
+
+
+    .btn-sair {
+
+        position: absolute;
+
+        right: 15px;
+
+        top: 20px;
+
+    }
+
+
+    .card {
+
+        padding: 20px;
+
+    }
+
+
+    .titulo h1 {
+
+        font-size: 26px;
+
+    }
+
+}

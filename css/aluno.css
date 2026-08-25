@@ -1,0 +1,883 @@
+/* ==========================================
+   RESET
+========================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+/* ==========================================
+   BODY
+========================================== */
+
+body {
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: #ffffff;
+
+    color: #000000;
+
+    min-height: 100vh;
+
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.header {
+
+    height: 85px;
+
+    background: #181818;
+
+    border-bottom:
+        1px solid #2d2d2d;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 55px;
+
+    gap: 40px;
+
+}
+
+
+/* ==========================================
+   LOGO
+========================================== */
+
+.logo-area {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 170px;
+
+}
+
+
+.logo {
+
+    width: 48px;
+
+    height: 48px;
+
+    object-fit: contain;
+
+}
+
+
+.logo-nome {
+
+    color: #f5a900;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+}
+
+
+/* ==========================================
+   MENU
+========================================== */
+
+.menu {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 30px;
+
+    flex: 1;
+
+}
+
+
+.menu a {
+
+    text-decoration: none;
+
+    color: #aaaaaa;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+
+}
+
+
+.menu a:hover {
+
+    color: #ffffff;
+
+}
+
+
+.menu a.ativo {
+
+    color: #f5a900;
+
+    font-weight: bold;
+
+}
+
+
+/* ==========================================
+   BOTÃO SAIR
+========================================== */
+
+.btn-sair {
+
+    background: #f5a900;
+
+    color: #111111;
+
+    border: none;
+
+    border-radius: 8px;
+
+    padding:
+        11px 21px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.btn-sair:hover {
+
+    background: #ffc23b;
+
+}
+
+
+/* ==========================================
+   MAIN
+========================================== */
+
+main {
+
+    width: 100%;
+
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    padding:
+        65px 55px 80px;
+
+}
+
+
+/* ==========================================
+   BOAS VINDAS
+========================================== */
+
+.boas-vindas {
+
+    margin-bottom: 38px;
+
+}
+
+
+.boas-vindas h1 {
+
+    font-size: 39px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.boas-vindas p {
+
+    color: #999999;
+
+    font-size: 17px;
+
+}
+
+
+/* ==========================================
+   PESQUISA
+========================================== */
+
+.pesquisa {
+
+    width: 100%;
+
+    margin-bottom: 55px;
+
+}
+
+
+.barra-pesquisa {
+
+    width: 100%;
+
+    max-width: 750px;
+
+    height: 54px;
+
+    background: #1b1b1b;
+
+    border:
+        1px solid #333333;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 18px;
+
+    gap: 12px;
+
+}
+
+
+.icone-pesquisa {
+
+    font-size: 19px;
+
+}
+
+
+.barra-pesquisa input {
+
+    flex: 1;
+
+    height: 100%;
+
+    background: transparent;
+
+    border: none;
+
+    outline: none;
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+}
+
+
+.barra-pesquisa input::placeholder {
+
+    color: #707070;
+
+}
+
+
+/* ==========================================
+   TÍTULO
+========================================== */
+
+.titulo-personais {
+
+    margin-bottom: 25px;
+
+}
+
+
+.titulo-personais h2 {
+
+    font-size: 27px;
+
+    margin-bottom: 6px;
+
+}
+
+
+.titulo-personais p {
+
+    color: #777777;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================
+   LISTA DE PERSONAIS
+========================================== */
+
+.lista-personais {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fill,
+            minmax(320px, 1fr)
+        );
+
+    gap: 24px;
+
+}
+
+
+/* ==========================================
+   CARD
+========================================== */
+
+.card-personal {
+
+    background: #ffffff;
+
+    border:
+        1px solid #303030;
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    min-height: 350px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition:
+        transform 0.2s,
+        border-color 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+.card-personal:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #f5a900;
+
+    box-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.25);
+
+}
+
+
+/* ==========================================
+   CABEÇALHO DO CARD
+========================================== */
+
+.card-cabecalho {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        flex-start;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.nome-personal {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: #000000;
+
+    line-height: 1.2;
+
+}
+
+
+.cref {
+
+    color: #686868;
+
+    font-size: 12px;
+
+    margin-top: 6px;
+
+}
+
+
+/* ==========================================
+   AVALIAÇÃO
+========================================== */
+
+.avaliacao {
+
+    white-space: nowrap;
+
+    color: #f5a900;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+}
+
+
+/* ==========================================
+   INFORMAÇÕES
+========================================== */
+
+.informacoes {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 14px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.info {
+
+    display: flex;
+
+    gap: 9px;
+
+    color: #565656;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+
+}
+
+
+.info strong {
+
+    color: #000000;
+
+}
+
+
+.info-icone {
+
+    min-width: 20px;
+
+}
+
+
+/* ==========================================
+   ACADEMIAS
+========================================== */
+
+.academias {
+
+    margin-top: 3px;
+
+}
+
+
+.academias-titulo {
+
+    color: #000000;
+
+    font-size: 14px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.lista-academias {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 6px;
+
+}
+
+
+.academia {
+
+    background: #f7f7f7;
+
+    border:
+        1px solid #383838;
+
+    color: #000000;
+
+    border-radius: 6px;
+
+    padding:
+        5px 8px;
+
+    font-size: 12px;
+
+}
+
+
+/* ==========================================
+   RODAPÉ DO CARD
+========================================== */
+
+.card-rodape {
+
+    border-top:
+        1px solid #303030;
+
+    padding-top: 18px;
+
+    margin-top: auto;
+
+}
+
+
+.preco-container {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+}
+
+
+.preco-label {
+
+    color: #000000;
+
+    font-size: 13px;
+
+}
+
+
+.preco {
+
+    color: #f5a900;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+}
+
+
+/* ==========================================
+   BOTÃO
+========================================== */
+
+.btn-ver {
+
+    width: 100%;
+
+    margin-top: 17px;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #f5a900;
+
+    color: #111111;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+}
+
+
+.btn-ver:hover {
+
+    background: #ffc23b;
+
+}
+
+
+/* ==========================================
+   CARREGANDO
+========================================== */
+
+.carregando {
+
+    grid-column:
+        1 / -1;
+
+    min-height: 250px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #777777;
+
+}
+
+
+.spinner {
+
+    width: 36px;
+
+    height: 36px;
+
+    border:
+        3px solid #333333;
+
+    border-top:
+        3px solid #f5a900;
+
+    border-radius: 50%;
+
+    animation:
+        girar 0.8s linear infinite;
+
+    margin-bottom: 15px;
+
+}
+
+
+@keyframes girar {
+
+    from {
+
+        transform: rotate(0deg);
+
+    }
+
+    to {
+
+        transform: rotate(360deg);
+
+    }
+
+}
+
+
+/* ==========================================
+   ERRO
+========================================== */
+
+.erro {
+
+    grid-column:
+        1 / -1;
+
+    background: #1b1b1b;
+
+    border:
+        1px solid #542d2d;
+
+    border-radius: 10px;
+
+    padding: 35px;
+
+    text-align: center;
+
+}
+
+
+.erro h3 {
+
+    color: #ff8585;
+
+    margin-bottom: 10px;
+
+}
+
+
+.erro p {
+
+    color: #999999;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================
+   SEM RESULTADOS
+========================================== */
+
+.sem-resultados {
+
+    grid-column:
+        1 / -1;
+
+    text-align: center;
+
+    padding: 70px 20px;
+
+    color: #777777;
+
+}
+
+
+.sem-resultados h3 {
+
+    color: #aaaaaa;
+
+    margin-bottom: 10px;
+
+}
+
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media (max-width: 950px) {
+
+    .header {
+
+        padding: 0 25px;
+
+        gap: 20px;
+
+    }
+
+
+    .menu {
+
+        gap: 17px;
+
+    }
+
+
+    .menu a {
+
+        font-size: 13px;
+
+    }
+
+
+    main {
+
+        padding:
+            50px 25px;
+
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .header {
+
+        height: auto;
+
+        min-height: 80px;
+
+        padding: 15px;
+
+        flex-wrap: wrap;
+
+    }
+
+
+    .menu {
+
+        order: 3;
+
+        width: 100%;
+
+        overflow-x: auto;
+
+        padding-bottom: 5px;
+
+    }
+
+
+    .btn-sair {
+
+        margin-left: auto;
+
+    }
+
+
+    .boas-vindas h1 {
+
+        font-size: 30px;
+
+    }
+
+
+    .lista-personais {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+@media (max-width: 450px) {
+
+    main {
+
+        padding:
+            40px 15px;
+
+    }
+
+
+    .boas-vindas h1 {
+
+        font-size: 26px;
+
+    }
+
+
+    .card-personal {
+
+        padding: 20px;
+
+    }
+
+}

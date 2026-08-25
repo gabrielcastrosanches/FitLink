@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+
+<body>
+    <h1>Cadastro</h1>
+
+    <label>Tipo de usuário:</label>
+    <select id="tipo_usuario" onchange="verificarTipo()" required>
+
+        <option value="">Selecione</option>
+        <option value="aluno">
+            Aluno
+        </option>
+        <option value="personal">
+            Personal Trainer
+        </option>
+    </select>
+
+
+
+    <!-- CADASTRO ALUNO -->
+
+    <div id="cadastroAluno" style="display:none;">
+        <h2>Cadastro Aluno</h2>
+
+        <form action="../php/cadastroAluno.php" method="POST">
+
+            <label>Nome:</label>
+            <input type="text" name="nome" required>
+            <br><br>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+            <br><br>
+            <label>Telefone:</label>
+            <input type="tel" name="telefone">
+            <br><br>
+            <label>Data de nascimento:</label>
+            <input type="date" name="data_nascimento">
+            <br><br>
+            <label>Gênero:</label>
+            <input type="text" name="genero">
+            <br><br>
+            <label>Senha:</label>
+            <input type="password" name="senha" required>
+            <br><br><br>
+            <button type="submit">
+                Cadastrar Aluno
+            </button>
+        </form>
+    </div>
+
+
+
+
+
+    <!-- CADASTRO PERSONAL -->
+    <div id="cadastroPersonal" style="display:none;">
+        <h2>Cadastro Personal</h2>
+
+        <form action="../php/cadastroPersonal.php" method="POST">
+
+            <label>CREF:</label>
+            <input type="text" name="id_cref" required>
+            <br><br>
+            <label>Nome:</label>
+            <input type="text" name="nome" required>
+            <br><br>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+            <br><br>
+            <label>Telefone:</label>
+            <input type="tel" name="telefone">
+            <br><br>
+            <label>Data de nascimento:</label>
+            <input type="date" name="data_nascimento">
+            <br><br>
+            <label>Gênero:</label>
+            <input type="text" name="genero">
+            <br><br>
+            <label>Senha:</label>
+            <input type="password" name="senha" required>
+            <br><br><br>
+            <button type="submit">
+                Cadastrar Personal
+            </button>
+        </form>
+    </div>
+
+    <script src="../js/cadastro.js"></script>
+</body>
+</html>

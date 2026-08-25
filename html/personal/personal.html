@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FitLink - Área do Personal</title>
+
+    <link rel="stylesheet" href="../../css/personal.css">
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         CABEÇALHO
+    ========================== -->
+
+    <header class="header">
+
+        <div class="logo">
+            FitLink
+        </div>
+
+
+        <nav class="menu">
+
+            <a href="personal.html" class="ativo">
+                Início
+            </a>
+
+            <a href="meusAlunos.html">
+                Meus Alunos
+            </a>
+
+            <a href="#">
+                Planos
+            </a>
+
+            <a href="#">
+                Agenda
+            </a>
+
+            <a href="#">
+                Feedbacks
+            </a>
+
+
+        </nav>
+
+
+        <div class="usuario">
+
+        <button
+            class="btn-sair"
+            onclick="window.location.href='../../php/logout.php'"
+        >Sair</button>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         CONTEÚDO PRINCIPAL
+    ========================== -->
+
+    <main>
+
+
+        <!-- =========================
+             BOAS-VINDAS
+        ========================== -->
+
+        <section class="boas-vindas">
+
+            <h1>
+                Bem-vindo ao FitLink!
+            </h1>
+
+            <p>
+                Gerencie seus alunos, treinos e horários
+                em um só lugar.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             CARDS
+        ========================== -->
+
+        <section class="cards">
+
+
+            <!-- MEUS ALUNOS -->
+
+            <div class="card">
+
+                <div class="card-icone">
+                    👥
+                </div>
+
+                <h2>
+                    Meus Alunos
+                </h2>
+
+                <p>
+                    Consulte e gerencie seus alunos.
+                </p>
+
+                <button
+                    onclick="window.location.href='meusAlunos.html'"
+                >
+                    Ver alunos
+                </button>
+
+            </div>
+
+
+            <!-- PLANOS -->
+
+            <div class="card">
+
+                <div class="card-icone">
+                    📋
+                </div>
+
+                <h2>
+                    Planos
+                </h2>
+
+                <p>
+                    Crie e gerencie seus planos de treinamento.
+                </p>
+
+                <button
+                    onclick="window.location.href='planos.html'"
+                >
+                    Gerenciar planos
+                </button>
+
+            </div>
+
+
+            <!-- AGENDA -->
+
+<div class="card">
+
+    <div class="card-icone">
+        📅
+    </div>
+
+    <h2>
+        Agenda
+    </h2>
+
+    <p>
+        Confira seus próximos atendimentos.
+    </p>
+
+    <button
+        onclick="window.location.href='agenda.html'"
+    >
+        Ver agenda
+    </button>
+
+</div>
+
+
+            <!-- FEEDBACKS -->
+
+            <div class="card">
+
+                <div class="card-icone">
+                    ⭐
+                </div>
+
+                <h2>
+                    Feedbacks
+                </h2>
+
+                <p>
+                    Consulte as avaliações recebidas dos seus alunos.
+                </p>
+
+                <button
+                    onclick="window.location.href='#'"
+                >
+                    Ver feedbacks
+                </button>
+
+            </div>
+
+
+            <!-- MEU PERFIL -->
+
+            <div class="card">
+
+                <div class="card-icone">
+                    👤
+                </div>
+
+                <h2>
+                    Meu Perfil
+                </h2>
+
+                <p>
+                    Consulte e atualize suas informações.
+                </p>
+
+                <button
+                    onclick="window.location.href='perfil.html'"
+                >
+                    Ver perfil
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script src="../../js/personal.js"></script>
+
+</body>
+
+</html>

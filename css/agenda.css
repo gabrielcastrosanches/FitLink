@@ -1,0 +1,809 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+
+    font-family: Arial, Helvetica, sans-serif;
+
+    background: #f5f5f5;
+
+    color: #222;
+
+}
+
+
+/* ==========================================
+   PÁGINA
+========================================== */
+
+.pagina {
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+}
+
+
+/* ==========================================
+   SIDEBAR
+========================================== */
+
+.sidebar {
+
+    width: 210px;
+
+    min-width: 210px;
+
+    height: 100vh;
+
+    position: fixed;
+
+    left: 0;
+
+    top: 0;
+
+    background: #171717;
+
+    padding: 20px 12px;
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.logo-area {
+
+    height: 70px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding-left: 12px;
+
+    margin-bottom: 20px;
+
+}
+
+
+.logo-area img {
+
+    width: 55px;
+
+    height: auto;
+
+    display: block;
+
+}
+
+
+.sidebar nav {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+}
+
+
+.sidebar nav a {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 12px;
+
+    border-radius: 8px;
+
+    color: #aaa;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+}
+
+
+.sidebar nav a:hover {
+
+    background: #252525;
+
+    color: white;
+
+}
+
+
+.sidebar nav a.ativo {
+
+    background: #292929;
+
+    color: white;
+
+}
+
+
+.sidebar nav span {
+
+    width: 22px;
+
+    text-align: center;
+
+}
+
+
+.btn-sair {
+
+    margin-top: auto;
+
+    padding: 11px;
+
+    background: transparent;
+
+    border: 1px solid #333;
+
+    border-radius: 8px;
+
+    color: #aaa;
+
+    cursor: pointer;
+
+}
+
+
+.btn-sair:hover {
+
+    background: #252525;
+
+    color: white;
+
+}
+
+
+/* ==========================================
+   CONTEÚDO
+========================================== */
+
+.conteudo {
+
+    width: calc(100% - 210px);
+
+    margin-left: 210px;
+
+    min-height: 100vh;
+
+    padding: 35px 45px;
+
+}
+
+
+/* ==========================================
+   TOPO
+========================================== */
+
+.topo {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+
+}
+
+
+.topo h1 {
+
+    font-size: 30px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.topo p {
+
+    color: #777;
+
+    font-size: 14px;
+
+}
+
+
+.btn-atualizar {
+
+    padding: 10px 16px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: #333;
+
+    cursor: pointer;
+
+}
+
+
+.btn-atualizar:hover {
+
+    background: #eee;
+
+}
+
+
+/* ==========================================
+   CONTROLE DE DATA
+========================================== */
+
+.controle-data {
+
+    width: 100%;
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 18px 22px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.06);
+
+    margin-bottom: 22px;
+
+}
+
+
+.btn-dia {
+
+    width: 38px;
+
+    height: 38px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 7px;
+
+    background: white;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+}
+
+
+.btn-dia:hover {
+
+    background: #f1f1f1;
+
+}
+
+
+.data-atual {
+
+    min-width: 240px;
+
+    text-align: center;
+
+}
+
+
+.data-atual span {
+
+    display: block;
+
+    color: #999;
+
+    font-size: 11px;
+
+    margin-bottom: 5px;
+
+}
+
+
+.data-atual strong {
+
+    font-size: 15px;
+
+}
+
+
+.btn-hoje {
+
+    padding: 9px 15px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #222;
+
+    color: white;
+
+    cursor: pointer;
+
+}
+
+
+.btn-hoje:hover {
+
+    background: #444;
+
+}
+
+
+/* ==========================================
+   RESUMO
+========================================== */
+
+.resumo {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.resumo-card {
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+.resumo-card span {
+
+    display: block;
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.resumo-card strong {
+
+    font-size: 25px;
+
+}
+
+
+/* ==========================================
+   AGENDA
+========================================== */
+
+.agenda {
+
+    background: white;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0, 0, 0, 0.06);
+
+}
+
+
+.lista-agenda {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+}
+
+
+/* ==========================================
+   HORÁRIO
+========================================== */
+
+.horario {
+
+    min-height: 80px;
+
+    border: 1px solid #e5e5e5;
+
+    border-radius: 9px;
+
+    padding: 14px 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 25px;
+
+}
+
+
+.horario:hover {
+
+    background: #fafafa;
+
+}
+
+
+/* ==========================================
+   HORA
+========================================== */
+
+.horario-esquerda {
+
+    width: 80px;
+
+}
+
+
+.hora {
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+}
+
+
+/* ==========================================
+   INFORMAÇÕES
+========================================== */
+
+.aula-info {
+
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.aula-info .label {
+
+    color: #999;
+
+    font-size: 10px;
+
+    font-weight: bold;
+
+}
+
+
+.aula-info strong {
+
+    font-size: 15px;
+
+}
+
+
+.aula-info small {
+
+    color: #888;
+
+    font-size: 12px;
+
+}
+
+
+/* ==========================================
+   STATUS
+========================================== */
+
+.aula-status {
+
+    width: 110px;
+
+    text-align: right;
+
+}
+
+
+.status {
+
+    display: inline-block;
+
+    padding: 7px 10px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: bold;
+
+}
+
+
+.status-disponivel {
+
+    background: #e9f7ee;
+
+    color: #287a45;
+
+}
+
+
+.status-pendente {
+
+    background: #fff5d8;
+
+    color: #9a7200;
+
+}
+
+
+.status-confirmada {
+
+    background: #e9f7ee;
+
+    color: #287a45;
+
+}
+
+
+.status-cancelada {
+
+    background: #fdeaea;
+
+    color: #a33232;
+
+}
+
+
+.status-remarcada {
+
+    background: #e9efff;
+
+    color: #3d5da8;
+
+}
+
+
+/* ==========================================
+   HORÁRIOS DISPONÍVEIS
+========================================== */
+
+.horario.disponivel {
+
+    border-left:
+        4px solid #4b9b61;
+
+}
+
+
+.horario.ocupado {
+
+    border-left:
+        4px solid #777;
+
+}
+
+
+/* ==========================================
+   CARREGANDO
+========================================== */
+
+.carregando {
+
+    padding: 40px;
+
+    text-align: center;
+
+    color: #888;
+
+}
+
+
+/* ==========================================
+   SEM HORÁRIOS
+========================================== */
+
+.sem-horarios {
+
+    padding: 70px 20px;
+
+    text-align: center;
+
+}
+
+
+.icone-vazio {
+
+    font-size: 40px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.sem-horarios h2 {
+
+    font-size: 19px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.sem-horarios p {
+
+    color: #888;
+
+    font-size: 13px;
+
+}
+
+
+/* ==========================================
+   ERRO
+========================================== */
+
+.erro {
+
+    padding: 35px;
+
+    text-align: center;
+
+    color: #a33232;
+
+}
+
+
+.erro p {
+
+    margin-top: 8px;
+
+    font-size: 13px;
+
+}
+
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media (max-width: 800px) {
+
+    .sidebar {
+
+        width: 70px;
+
+        min-width: 70px;
+
+    }
+
+
+    .logo-area {
+
+        justify-content: center;
+
+        padding-left: 0;
+
+    }
+
+
+    .sidebar nav a {
+
+        justify-content: center;
+
+        font-size: 0;
+
+    }
+
+
+    .sidebar nav span {
+
+        font-size: 18px;
+
+    }
+
+
+    .conteudo {
+
+        width: calc(100% - 70px);
+
+        margin-left: 70px;
+
+        padding: 25px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .conteudo {
+
+        padding: 20px 15px;
+
+    }
+
+
+    .topo {
+
+        align-items: flex-start;
+
+        gap: 15px;
+
+    }
+
+
+    .topo h1 {
+
+        font-size: 24px;
+
+    }
+
+
+    .resumo {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .horario {
+
+        gap: 12px;
+
+    }
+
+
+    .aula-status {
+
+        width: auto;
+
+    }
+
+}

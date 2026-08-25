@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mensagens - FitLink</title>
+
+    <link rel="stylesheet" href="../../css/meus_alunos.css">
+</head>
+
+<body>
+
+    <div class="dm-container">
+
+
+        <!-- =========================================
+             SIDEBAR
+        ========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+
+                <img
+                    src="../../img/logo.png"
+                    alt="FitLink"
+                >
+
+            </div>
+
+
+            <nav class="sidebar-menu">
+
+                <a href="personal.html">
+
+                    <span>⌂</span>
+
+                    Início
+
+                </a>
+
+
+                <a
+                    href="meusAlunos.html"
+                    class="menu-ativo"
+                >
+
+                    <span>💬</span>
+
+                    Mensagens
+
+                </a>
+
+
+                <a href="#">
+
+                    <span>📋</span>
+
+                    Planos
+
+                </a>
+
+
+                <a href="#">
+
+                    <span>📅</span>
+
+                    Agenda
+
+                </a>
+
+
+                <a href="#">
+
+                    <span>👤</span>
+
+                    Perfil
+
+                </a>
+
+            </nav>
+
+
+            <button
+                class="btn-sair-dm"
+                onclick="sair()"
+            >
+
+                Sair
+
+            </button>
+
+        </aside>
+
+
+
+        <!-- =========================================
+             LISTA DE ALUNOS
+        ========================================== -->
+
+        <section class="conversas">
+
+            <div class="conversas-header">
+
+                <h1>Mensagens</h1>
+
+            </div>
+
+
+            <div class="pesquisa-alunos">
+
+                <span>🔍</span>
+
+                <input
+                    type="text"
+                    id="pesquisaAluno"
+                    placeholder="Pesquisar aluno..."
+                >
+
+            </div>
+
+
+            <div
+                class="lista-conversas"
+                id="listaAlunos"
+            >
+
+                <p class="carregando">
+                    Carregando alunos...
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================================
+             CHAT
+        ========================================== -->
+
+        <main class="chat">
+
+
+            <!-- CABEÇALHO -->
+
+            <header class="chat-header">
+
+                <div class="chat-usuario">
+
+                    <div
+                        class="avatar"
+                        id="avatarAluno"
+                    >
+                        ?
+                    </div>
+
+
+                    <div>
+
+                        <h2 id="nomeAluno">
+                            Selecione um aluno
+                        </h2>
+
+                        <span id="statusAluno">
+                            —
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- MENSAGENS -->
+
+            <div
+                class="mensagens"
+                id="mensagens"
+            >
+
+                <div class="chat-inicial">
+
+                    <div class="chat-inicial-icone">
+                        💬
+                    </div>
+
+                    <h2>
+                        Comunicação com alunos
+                    </h2>
+
+                    <p>
+                        Selecione um aluno para visualizar
+                        as informações das aulas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- AÇÕES -->
+
+            <div
+                class="acoes-chat"
+                id="acoesChat"
+                style="display: none;"
+            >
+
+                <button
+                    class="btn-confirmar"
+                    id="btnConfirmar"
+                    onclick="alterarStatus('confirmada')"
+                >
+                    ✓ Confirmar aula
+                </button>
+
+
+                <button
+                    class="btn-cancelar"
+                    id="btnCancelar"
+                    onclick="alterarStatus('cancelada')"
+                >
+                    ✕ Cancelar aula
+                </button>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+
+    <script>
+
+        /*
+        =====================================================
+        ID DO PERSONAL
+        =====================================================
+
+        Por enquanto estamos usando o CREF 1 apenas
+        para testar.
+
+        Depois vamos pegar esse valor automaticamente
+        da sessão criada no login.
+        */
+
+        const idCref = 1;
+
+
+        let alunos = [];
+
+        let alunoSelecionado = null;
+
+
+
+        /*
+        =====================================================
+        CARREGAR ALUNOS
+        =====================================================
+        */
+
+        function carregarAlunos() {
+
+            fetch(
+                "../../php/meus_alunos.php?acao=listar&id_cref="
+                + idCref
+            )
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Erro HTTP: " + response.status
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(dados => {
+
+                alunos = dados;
+
+                mostrarAlunos(dados);
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
+
+                document.getElementById(
+                    "listaAlunos"
+                ).innerHTML = `
+
+                    <p class="erro">
+
+                        Erro ao carregar os alunos.
+
+                    </p>
+
+                `;
+
+            });
+
+        }
+
+
+
+        /*
+        =====================================================
+        MOSTRAR ALUNOS
+        =====================================================
+        */
+
+        function mostrarAlunos(lista) {
+
+            const container =
+                document.getElementById(
+                    "listaAlunos"
+                );
+
+
+            container.innerHTML = "";
+
+
+            if (
+                !Array.isArray(lista) ||
+                lista.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <p class="sem-alunos">
+
+                        Nenhum aluno possui aula
+                        com você.
+
+                    </p>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            lista.forEach(aluno => {
+
+                const conversa =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                conversa.classList.add(
+                    "conversa"
+                );
+
+
+                conversa.dataset.nome =
+                    String(
+                        aluno.nome || ""
+                    ).toLowerCase();
+
+
+
+                const primeiraLetra =
+                    String(
+                        aluno.nome || "?"
+                    )
+                    .charAt(0)
+                    .toUpperCase();
+
+
+
+                let statusTexto =
+                    "Sem aula";
+
+
+
+                if (
+                    aluno.status ===
+                    "pendente"
+                ) {
+
+                    statusTexto =
+                        "Solicitação de aula";
+
+                }
+
+                else if (
+                    aluno.status ===
+                    "confirmada"
+                ) {
+
+                    statusTexto =
+                        "Aula confirmada";
+
+                }
+
+                else if (
+                    aluno.status ===
+                    "cancelada"
+                ) {
+
+                    statusTexto =
+                        "Aula cancelada";
+
+                }
+
+                else if (
+                    aluno.status ===
+                    "remarcada"
+                ) {
+
+                    statusTexto =
+                        "Aula remarcada";
+
+                }
+
+
+
+                conversa.innerHTML = `
+
+                    <div class="avatar">
+
+                        ${primeiraLetra}
+
+                    </div>
+
+
+                    <div class="conversa-info">
+
+                        <div class="conversa-topo">
+
+                            <h3>
+                                ${aluno.nome}
+                            </h3>
+
+                        </div>
+
+
+                        <p>
+                            ${statusTexto}
+                        </p>
+
+                    </div>
+
+                `;
+
+
+
+                conversa.addEventListener(
+                    "click",
+                    function () {
+
+                        document
+                            .querySelectorAll(
+                                ".conversa"
+                            )
+                            .forEach(item => {
+
+                                item.classList.remove(
+                                    "conversa-ativa"
+                                );
+
+                            });
+
+
+                        conversa.classList.add(
+                            "conversa-ativa"
+                        );
+
+
+                        selecionarAluno(
+                            aluno
+                        );
+
+                    }
+                );
+
+
+
+                container.appendChild(
+                    conversa
+                );
+
+            });
+
+        }
+
+
+
+        /*
+        =====================================================
+        SELECIONAR ALUNO
+        =====================================================
+        */
+
+        function selecionarAluno(aluno) {
+
+            alunoSelecionado = aluno;
+
+
+            const nome =
+                aluno.nome || "Aluno";
+
+
+            document.getElementById(
+                "nomeAluno"
+            ).textContent =
+                nome;
+
+
+            document.getElementById(
+                "avatarAluno"
+            ).textContent =
+                nome
+                    .charAt(0)
+                    .toUpperCase();
+
+
+            document.getElementById(
+                "statusAluno"
+            ).textContent =
+                "Aluno";
+
+
+            mostrarAula(aluno);
+
+        }
+
+
+
+        /*
+        =====================================================
+        MOSTRAR INFORMAÇÕES DA AULA
+        =====================================================
+        */
+
+        function mostrarAula(aluno) {
+
+            const mensagens =
+                document.getElementById(
+                    "mensagens"
+                );
+
+
+            const acoes =
+                document.getElementById(
+                    "acoesChat"
+                );
+
+
+            mensagens.innerHTML = "";
+
+            acoes.style.display =
+                "none";
+
+
+
+            if (!aluno.id_aula) {
+
+                mensagens.innerHTML = `
+
+                    <div class="chat-inicial">
+
+                        <div class="chat-inicial-icone">
+                            📅
+                        </div>
+
+                        <h2>
+                            Nenhuma aula encontrada
+                        </h2>
+
+                        <p>
+                            Este aluno não possui
+                            uma aula marcada.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            let titulo =
+                "";
+
+            let texto =
+                "";
+
+
+
+            if (
+                aluno.status ===
+                "pendente"
+            ) {
+
+                titulo =
+                    "Nova solicitação de aula";
+
+                texto =
+                    "O aluno solicitou uma aula.";
+
+            }
+
+            else if (
+                aluno.status ===
+                "confirmada"
+            ) {
+
+                titulo =
+                    "Aula confirmada";
+
+                texto =
+                    "A aula está confirmada.";
+
+            }
+
+            else if (
+                aluno.status ===
+                "cancelada"
+            ) {
+
+                titulo =
+                    "Aula cancelada";
+
+                texto =
+                    "Esta aula foi cancelada.";
+
+            }
+
+            else if (
+                aluno.status ===
+                "remarcada"
+            ) {
+
+                titulo =
+                    "Aula remarcada";
+
+                texto =
+                    "O horário desta aula foi alterado.";
+
+            }
+
+            else {
+
+                titulo =
+                    "Informação da aula";
+
+                texto =
+                    "Confira os dados da aula.";
+
+            }
+
+
+
+            mensagens.innerHTML = `
+
+                <div class="mensagem mensagem-sistema">
+
+                    <div class="balao sistema">
+
+                        <strong>
+                            ${titulo}
+                        </strong>
+
+                        <br><br>
+
+                        ${texto}
+
+                        <br><br>
+
+                        <span class="dados-aula">
+
+                            📅 ${aluno.dia}
+
+                            <br>
+
+                            🕐 ${aluno.horario}
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+
+            /*
+            ==============================================
+            MOSTRAR BOTÕES
+            ==============================================
+            */
+
+            if (
+                aluno.status ===
+                "pendente"
+            ) {
+
+                acoes.style.display =
+                    "flex";
+
+            }
+
+        }
+
+
+
+        /*
+        =====================================================
+        ALTERAR STATUS DA AULA
+        =====================================================
+        */
+
+        function alterarStatus(novoStatus) {
+
+            if (!alunoSelecionado) {
+
+                return;
+
+            }
+
+
+
+            const dados =
+                new FormData();
+
+
+            dados.append(
+                "acao",
+                "alterar_status"
+            );
+
+
+            dados.append(
+                "id_aula",
+                alunoSelecionado.id_aula
+            );
+
+
+            dados.append(
+                "status",
+                novoStatus
+            );
+
+
+
+            fetch(
+                "../../php/meus_alunos.php",
+                {
+                    method: "POST",
+                    body: dados
+                }
+            )
+
+            .then(response => {
+
+                return response.text();
+
+            })
+
+            .then(resultado => {
+
+                if (
+                    resultado.trim() ===
+                    "sucesso"
+                ) {
+
+                    alert(
+                        "Status da aula atualizado!"
+                    );
+
+
+                    carregarAlunos();
+
+
+                    alunoSelecionado.status =
+                        novoStatus;
+
+
+                    mostrarAula(
+                        alunoSelecionado
+                    );
+
+                }
+
+                else {
+
+                    alert(
+                        "Erro: " + resultado
+                    );
+
+                }
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
+
+                alert(
+                    "Erro ao atualizar a aula."
+                );
+
+            });
+
+        }
+
+
+
+        /*
+        =====================================================
+        PESQUISAR ALUNO
+        =====================================================
+        */
+
+        document
+            .getElementById(
+                "pesquisaAluno"
+            )
+            .addEventListener(
+                "input",
+                function () {
+
+                    const pesquisa =
+                        this.value
+                            .toLowerCase()
+                            .trim();
+
+
+                    document
+                        .querySelectorAll(
+                            ".conversa"
+                        )
+                        .forEach(conversa => {
+
+                            const nome =
+                                conversa.dataset.nome;
+
+
+                            if (
+                                nome.includes(
+                                    pesquisa
+                                )
+                            ) {
+
+                                conversa.style.display =
+                                    "flex";
+
+                            }
+
+                            else {
+
+                                conversa.style.display =
+                                    "none";
+
+                            }
+
+                        });
+
+                }
+            );
+
+
+
+        /*
+        =====================================================
+        SAIR
+        =====================================================
+        */
+
+        function sair() {
+
+            window.location.href =
+                "../login.html";
+
+        }
+
+
+
+        /*
+        =====================================================
+        INICIAR
+        =====================================================
+        */
+
+        carregarAlunos();
+
+    </script>
+
+</body>
+
+</html>

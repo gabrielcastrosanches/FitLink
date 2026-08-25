@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Meu Perfil - FitLink</title>
+
+    <link
+        rel="stylesheet"
+        href="../../css/perfil.css"
+    >
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo-area">
+
+        <img
+            src="../../img/logo.png"
+            alt="FitLink"
+            class="logo"
+        >
+
+    </div>
+
+
+    <nav>
+
+        <a href="personal.html">
+            Início
+        </a>
+
+        <a href="alunos.html">
+            Alunos
+        </a>
+
+        <a href="agenda.html">
+            Agenda
+        </a>
+
+        <a href="planos.html">
+            Planos
+        </a>
+
+        <a
+            href="perfil.html"
+            class="ativo"
+        >
+            Perfil
+        </a>
+
+    </nav>
+
+
+    <button
+        class="btn-sair"
+        onclick="sair()"
+    >
+        Sair
+    </button>
+
+</header>
+
+
+
+<main>
+
+    <section class="perfil-container">
+
+
+        <!-- =========================
+             TÍTULO
+        ========================== -->
+
+        <div class="titulo">
+
+            <h1>
+                Meu Perfil
+            </h1>
+
+            <p>
+                Gerencie suas informações e as academias
+                onde você trabalha.
+            </p>
+
+        </div>
+
+
+
+        <!-- =========================
+             INFORMAÇÕES PESSOAIS
+        ========================== -->
+
+        <div class="card">
+
+            <h2>
+                Informações pessoais
+            </h2>
+
+
+            <form id="perfilForm">
+
+
+                <div class="campo">
+
+                    <label for="nome">
+                        Nome
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        name="nome"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="campo">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="campo">
+
+                    <label for="telefone">
+                        Telefone
+                    </label>
+
+                    <input
+                        type="text"
+                        id="telefone"
+                        name="telefone"
+                    >
+
+                </div>
+
+
+
+                <div class="linha">
+
+
+                    <div class="campo">
+
+                        <label for="data_nascimento">
+                            Data de nascimento
+                        </label>
+
+                        <input
+                            type="date"
+                            id="data_nascimento"
+                            name="data_nascimento"
+                        >
+
+                    </div>
+
+
+
+                    <div class="campo">
+
+                        <label for="genero">
+                            Gênero
+                        </label>
+
+                        <input
+                            type="text"
+                            id="genero"
+                            name="genero"
+                        >
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="campo">
+
+                    <label for="cref">
+                        CREF
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cref"
+                        readonly
+                    >
+
+                    <small>
+                        O CREF não pode ser alterado.
+                    </small>
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="btn-salvar"
+                >
+                    Salvar alterações
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+
+        <!-- =========================
+             ACADEMIAS
+        ========================== -->
+
+        <div class="card academias-card">
+
+            <h2>
+                Academias onde trabalho
+            </h2>
+
+
+            <p class="descricao">
+
+                Encontre academias próximas à sua
+                localização e selecione onde você trabalha.
+
+            </p>
+
+
+            <button
+                type="button"
+                id="btnLocalizacao"
+                class="btn-localizacao"
+                onclick="buscarAcademias()"
+            >
+
+                📍 Encontrar academias próximas
+
+            </button>
+
+
+            <p
+                id="statusLocalizacao"
+                class="status-localizacao"
+            ></p>
+
+
+            <div
+                id="listaAcademias"
+                class="lista-academias"
+            >
+
+                <div class="mensagem">
+
+                    <span>
+                        📍
+                    </span>
+
+                    <p>
+                        Clique no botão acima para
+                        encontrar academias próximas.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="btnSalvarAcademias"
+                class="btn-salvar"
+                onclick="salvarAcademias()"
+                style="display:none;"
+            >
+
+                Salvar academias selecionadas
+
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<script src="../../js/perfil.js"></script>
+
+</body>
+
+</html>

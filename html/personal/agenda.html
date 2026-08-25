@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Agenda - FitLink</title>
+
+    <link
+        rel="stylesheet"
+        href="../../css/agenda.css"
+    >
+
+</head>
+
+<body>
+
+    <div class="pagina">
+
+
+        <!-- =========================
+             MENU LATERAL
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="logo-area">
+
+                <img
+                    src="../../img/logo.png"
+                    alt="FitLink"
+                >
+
+            </div>
+
+
+            <nav>
+
+                <a href="personal.html">
+                    <span>⌂</span>
+                    Início
+                </a>
+
+
+                <a href="meusAlunos.html">
+                    <span>💬</span>
+                    Mensagens
+                </a>
+
+
+                <a href="#">
+                    <span>📋</span>
+                    Planos
+                </a>
+
+
+                <a
+                    href="agenda.html"
+                    class="ativo"
+                >
+                    <span>📅</span>
+                    Agenda
+                </a>
+
+
+                <a href="#">
+                    <span>👤</span>
+                    Perfil
+                </a>
+
+            </nav>
+
+
+            <button
+                class="btn-sair"
+                onclick="sair()"
+            >
+                Sair
+            </button>
+
+        </aside>
+
+
+
+        <!-- =========================
+             CONTEÚDO
+        ========================== -->
+
+        <main class="conteudo">
+
+
+            <!-- CABEÇALHO -->
+
+            <section class="topo">
+
+                <div>
+
+                    <h1>Minha Agenda</h1>
+
+                    <p>
+                        Consulte seus horários e aulas marcadas.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="btn-atualizar"
+                    onclick="carregarAgenda()"
+                >
+                    ↻ Atualizar
+                </button>
+
+            </section>
+
+
+
+            <!-- =========================
+                 SELEÇÃO DE DATA
+            ========================== -->
+
+            <section class="controle-data">
+
+                <button
+                    onclick="mudarDia(-1)"
+                    class="btn-dia"
+                >
+                    ‹
+                </button>
+
+
+                <div class="data-atual">
+
+                    <span>Data selecionada</span>
+
+                    <strong id="dataExibida">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <button
+                    onclick="mudarDia(1)"
+                    class="btn-dia"
+                >
+                    ›
+                </button>
+
+
+                <button
+                    onclick="irParaHoje()"
+                    class="btn-hoje"
+                >
+                    Hoje
+                </button>
+
+            </section>
+
+
+
+            <!-- =========================
+                 RESUMO
+            ========================== -->
+
+            <section class="resumo">
+
+                <div class="resumo-card">
+
+                    <span>Horários</span>
+
+                    <strong id="totalHorarios">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="resumo-card">
+
+                    <span>Aulas marcadas</span>
+
+                    <strong id="totalAulas">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="resumo-card">
+
+                    <span>Disponíveis</span>
+
+                    <strong id="totalDisponiveis">
+                        0
+                    </strong>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =========================
+                 AGENDA
+            ========================== -->
+
+            <section class="agenda">
+
+                <div
+                    id="listaAgenda"
+                    class="lista-agenda"
+                >
+
+                    <div class="carregando">
+
+                        Carregando agenda...
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+
+    <script>
+
+        /*
+        ==================================================
+        ID DO PERSONAL
+        ==================================================
+
+        TEMPORÁRIO.
+
+        Depois vamos substituir pelo id_cref
+        armazenado na sessão do login.
+        */
+
+        const idCref = 1;
+
+
+        /*
+        ==================================================
+        DATA SELECIONADA
+        ==================================================
+        */
+
+        let dataSelecionada =
+            new Date();
+
+
+
+        /*
+        ==================================================
+        FORMATAR DATA PARA PHP
+        ==================================================
+        */
+
+        function formatarDataPHP(data) {
+
+            const ano =
+                data.getFullYear();
+
+            const mes =
+                String(
+                    data.getMonth() + 1
+                ).padStart(2, "0");
+
+            const dia =
+                String(
+                    data.getDate()
+                ).padStart(2, "0");
+
+
+            return `${ano}-${mes}-${dia}`;
+
+        }
+
+
+
+        /*
+        ==================================================
+        FORMATAR DATA PARA MOSTRAR
+        ==================================================
+        */
+
+        function formatarDataTela(data) {
+
+            return data.toLocaleDateString(
+                "pt-BR",
+                {
+                    weekday: "long",
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+
+        /*
+        ==================================================
+        ATUALIZAR DATA NA TELA
+        ==================================================
+        */
+
+        function atualizarDataTela() {
+
+            document.getElementById(
+                "dataExibida"
+            ).textContent =
+                formatarDataTela(
+                    dataSelecionada
+                );
+
+        }
+
+
+
+        /*
+        ==================================================
+        MUDAR DIA
+        ==================================================
+        */
+
+        function mudarDia(valor) {
+
+            dataSelecionada.setDate(
+                dataSelecionada.getDate()
+                + valor
+            );
+
+
+            atualizarDataTela();
+
+            carregarAgenda();
+
+        }
+
+
+
+        /*
+        ==================================================
+        IR PARA HOJE
+        ==================================================
+        */
+
+        function irParaHoje() {
+
+            dataSelecionada =
+                new Date();
+
+            atualizarDataTela();
+
+            carregarAgenda();
+
+        }
+
+
+
+        /*
+        ==================================================
+        CARREGAR AGENDA
+        ==================================================
+        */
+
+        function carregarAgenda() {
+
+            const data =
+                formatarDataPHP(
+                    dataSelecionada
+                );
+
+
+            const lista =
+                document.getElementById(
+                    "listaAgenda"
+                );
+
+
+            lista.innerHTML = `
+
+                <div class="carregando">
+
+                    Carregando agenda...
+
+                </div>
+
+            `;
+
+
+
+            fetch(
+                `../../php/agenda.php?acao=listar&id_cref=${idCref}&data=${data}`
+            )
+
+            .then(response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Erro HTTP: "
+                        + response.status
+                    );
+
+                }
+
+                return response.json();
+
+            })
+
+            .then(dados => {
+
+                if (dados.erro) {
+
+                    throw new Error(
+                        dados.erro
+                    );
+
+                }
+
+
+                mostrarAgenda(dados);
+
+            })
+
+            .catch(error => {
+
+                console.error(error);
+
+
+                lista.innerHTML = `
+
+                    <div class="erro">
+
+                        <strong>
+                            Erro ao carregar a agenda.
+                        </strong>
+
+                        <p>
+                            ${error.message}
+                        </p>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+
+        /*
+        ==================================================
+        MOSTRAR AGENDA
+        ==================================================
+        */
+
+        function mostrarAgenda(dados) {
+
+            const lista =
+                document.getElementById(
+                    "listaAgenda"
+                );
+
+
+            lista.innerHTML = "";
+
+
+            const total =
+                dados.length;
+
+
+            const aulas =
+                dados.filter(
+                    item =>
+                        item.id_aula !== null
+                ).length;
+
+
+            const disponiveis =
+                total - aulas;
+
+
+
+            document.getElementById(
+                "totalHorarios"
+            ).textContent =
+                total;
+
+
+            document.getElementById(
+                "totalAulas"
+            ).textContent =
+                aulas;
+
+
+            document.getElementById(
+                "totalDisponiveis"
+            ).textContent =
+                disponiveis;
+
+
+
+            if (total === 0) {
+
+                lista.innerHTML = `
+
+                    <div class="sem-horarios">
+
+                        <div class="icone-vazio">
+                            📅
+                        </div>
+
+                        <h2>
+                            Nenhum horário cadastrado
+                        </h2>
+
+                        <p>
+                            Você não possui horários
+                            disponíveis para esta data.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+
+            dados.forEach(horario => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.classList.add(
+                    "horario"
+                );
+
+
+                /*
+                ==========================================
+                HORÁRIO
+                ==========================================
+                */
+
+                const horarioFormatado =
+                    horario.horario;
+
+
+                /*
+                ==========================================
+                SE TEM AULA
+                ==========================================
+                */
+
+                if (
+                    horario.id_aula !== null
+                ) {
+
+                    card.classList.add(
+                        "ocupado"
+                    );
+
+
+                    let statusClasse =
+                        "status-pendente";
+
+
+                    let statusTexto =
+                        "Pendente";
+
+
+                    if (
+                        horario.status ===
+                        "confirmada"
+                    ) {
+
+                        statusClasse =
+                            "status-confirmada";
+
+                        statusTexto =
+                            "Confirmada";
+
+                    }
+
+                    else if (
+                        horario.status ===
+                        "cancelada"
+                    ) {
+
+                        statusClasse =
+                            "status-cancelada";
+
+                        statusTexto =
+                            "Cancelada";
+
+                    }
+
+                    else if (
+                        horario.status ===
+                        "remarcada"
+                    ) {
+
+                        statusClasse =
+                            "status-remarcada";
+
+                        statusTexto =
+                            "Remarcada";
+
+                    }
+
+
+
+                    card.innerHTML = `
+
+                        <div class="horario-esquerda">
+
+                            <div class="hora">
+
+                                ${horarioFormatado}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="aula-info">
+
+                            <span class="label">
+                                ALUNO
+                            </span>
+
+                            <strong>
+                                ${horario.nome_aluno}
+                            </strong>
+
+                            <small>
+                                ${horario.email_aluno}
+                            </small>
+
+                        </div>
+
+
+                        <div class="aula-status">
+
+                            <span
+                                class="status ${statusClasse}"
+                            >
+
+                                ${statusTexto}
+
+                            </span>
+
+                        </div>
+
+                    `;
+
+                }
+
+                else {
+
+                    card.classList.add(
+                        "disponivel"
+                    );
+
+
+                    card.innerHTML = `
+
+                        <div class="horario-esquerda">
+
+                            <div class="hora">
+
+                                ${horarioFormatado}
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="aula-info">
+
+                            <span class="label">
+                                HORÁRIO
+                            </span>
+
+                            <strong>
+                                Disponível
+                            </strong>
+
+                            <small>
+                                Nenhum aluno marcado
+                            </small>
+
+                        </div>
+
+
+                        <div class="aula-status">
+
+                            <span class="status status-disponivel">
+
+                                Disponível
+
+                            </span>
+
+                        </div>
+
+                    `;
+
+                }
+
+
+                lista.appendChild(card);
+
+            });
+
+        }
+
+
+
+        /*
+        ==================================================
+        SAIR
+        ==================================================
+        */
+
+        function sair() {
+
+            window.location.href =
+                "../login.html";
+
+        }
+
+
+
+        /*
+        ==================================================
+        INICIALIZAÇÃO
+        ==================================================
+        */
+
+        atualizarDataTela();
+
+        carregarAgenda();
+
+    </script>
+
+</body>
+
+</html>
